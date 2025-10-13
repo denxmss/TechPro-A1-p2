@@ -1,0 +1,25 @@
+Write-Host "Enter up to 5 items you need to buy:"
+
+$shoppingList = @()
+
+for ($i = 1; $i -le 5; $i++) {
+    $item = Read-Host "Enter item $i:"
+    if ([string]::IsNullOrWhiteSpace($item)) {
+        break
+    }
+    $shoppingList += $item
+}
+
+Write-Host "`n📝 Your Shopping List:"
+for ($i = 0; $i -lt $shoppingList.Count; $i++) {
+    Write-Host "$($i + 1). $($shoppingList[$i])"
+}
+
+Write-Host "`n📦 Total items in list: $($shoppingList.Count)"
+
+$searchItem = Read-Host "`n🔍 Enter an item to search for"
+if ($shoppingList -contains $searchItem) {
+    Write-Host "✅ '$searchItem' is in your shopping list."
+} else {
+    Write-Host "❌ '$searchItem' is NOT in your shopping list."
+}
